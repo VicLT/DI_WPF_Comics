@@ -1,3 +1,0 @@
-Al haber replicado el comportamiento de las operaciones del trabajo final de la 1ª evaluación, necesitarás ejecutar el script "Comic_SQLSERVER_v4" para tener acceso a los clientes.
-
-En el login el canExecute del botón parece que tiene un comportamiento errático, pero es debido al evento onMouseOver de la password. Lo puse así para poder tener las credenciales ya puestas de manera previa y poder hacer login de manera rápida y fácil.
