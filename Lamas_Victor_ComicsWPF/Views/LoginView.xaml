@@ -1,0 +1,454 @@
+﻿<Window x:Class="Lamas_Victor_ComicsWPF.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lamas_Victor_ComicsWPF.Views"
+        xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
+        mc:Ignorable="d"
+        Title="LoginView" Height="700" Width="600"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <StackPanel>
+                <Border BorderBrush="Red"
+                        BorderThickness="0">
+                    <!-- Placeholder for the TextBox itself -->
+                    <AdornedElementPlaceholder x:Name="AdornedElement"/>
+                </Border>
+                <Border Background="White"
+                        BorderBrush="Red"
+                        Padding="4"
+                        BorderThickness="1,0,1,1"
+                        HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{Binding}"
+                                  HorizontalAlignment="Left">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ErrorContent}" 
+                                           Foreground="Red"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Border CornerRadius="30">
+        <Border.Background>
+            <ImageBrush ImageSource="/Resources/background.png"
+                        Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <Border CornerRadius="25"
+            BorderThickness="3"
+            Opacity="0.8">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource winBorderColor1}"
+                                  Offset="0"/>
+                    <GradientStop Color="{StaticResource winBorderColor2}" 
+                                  Offset="1.75"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource primaryBackColor1}"
+                                  Offset="0"/>
+                    <GradientStop Color="{StaticResource primaryBackColor2}" 
+                                  Offset="1.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="/Resources/logo.png"
+                       x:Name="imgLogo"
+                       Opacity="0.5"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Grid.Row="0"
+                       Grid.RowSpan="3">
+                </Image>
+
+                <TextBlock Text="LOGIN"
+                           x:Name="tbLogin"
+                           Foreground="White"
+                           FontSize="55"
+                           FontFamily="Courier New"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.RowSpan="3"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+
+                <Button x:Name="btnMinimize"                           
+                        BorderThickness="0"
+                        Content="-"
+                        Foreground="White"
+                        FontSize="20"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Grid.Column="4"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,10,50,0"
+                        Click="btnMinimize_Click">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#28AEED"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#278BEF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                    Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnClose"                          
+                        BorderThickness="0"
+                        Content="X"
+                        Foreground="White"
+                        FontSize="14"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Grid.Column="4"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,10,20,0"
+                        Click="btnClose_Click">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#DA34AE"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C62DAE"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                    Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Label Content="NIF"
+                       x:Name="lblNif"
+                       Foreground="White"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       FontSize="20"
+                       FontFamily="Courier New"/>
+
+                <Image Source="/Resources/user-icon.png"
+                       x:Name="imgNif"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       Grid.Row="4"
+                       MaxWidth="35"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <Image Source="/Resources/check-icon.png"
+                       x:Name="imgNifCheck"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="3"
+                       Grid.Row="4"
+                       MaxWidth="35"
+                       Visibility="{Binding NifCheckIsVisible}"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <Image Source="/Resources/error-icon.png"
+                       x:Name="imgNifError"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="3"
+                       Grid.Row="4"
+                       MaxWidth="35"
+                       Visibility="{Binding Path=NifErrorIsVisible}"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <TextBox x:Name="tbNif"
+                         Text="{
+                            Binding Path=Nif,
+                            UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnNotifyDataErrors=True
+                         }"
+                         Validation.ErrorTemplate="{
+                            StaticResource ValidationErrorTemplate
+                         }"
+                         Background="Transparent"
+                         Foreground="White"
+                         CaretBrush="White"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Bottom"
+                         BorderThickness="0"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="3"
+                         FontFamily="Courier New"
+                         FontSize="18"
+                         Width="244"
+                         Height="34"
+                         Margin="0,0,59,10"/>
+
+                <Separator Grid.Column="1"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="4"
+                           Grid.RowSpan="1"
+                           Background="White"
+                           VerticalAlignment="Bottom"
+                           Height="3"/>
+
+                <Label Content="Password"
+                       x:Name="lblPass"
+                       Foreground="White"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       Grid.Row="5"
+                       FontSize="20"
+                       FontFamily="Courier New"/>
+
+                <Image Source="/Resources/key-icon.png"
+                       x:Name="imgKey"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       Grid.Row="6"
+                       MaxWidth="35"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <Image Source="/Resources/check-icon.png"
+                       x:Name="imgPassCheck"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="3"
+                       Grid.Row="6"
+                       MaxWidth="35"
+                       Visibility="{Binding PassCheckIsVisible}"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <Image Source="/Resources/error-icon.png"
+                       x:Name="imgPassError"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="3"
+                       Grid.Row="6"
+                       MaxWidth="35"
+                       Visibility="{Binding PassErrorIsVisible}"
+                       Margin="5,0,0,15">
+                </Image>
+
+                <PasswordBox x:Name="pbPass"
+                             Password="password123"
+                             Background="Transparent"
+                             Foreground="White"
+                             BorderThickness="0"
+                             CaretBrush="White"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Bottom"
+                             Grid.Row="6"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="3"
+                             FontFamily="Courier New"
+                             FontSize="18"
+                             Width="244"
+                             Height="34"
+                             Margin="0,0,59,10"
+                             PasswordChanged="pbPass_PasswordChanged"
+                             MouseEnter="pbPass_MouseEnter"/>
+
+                <Separator Grid.Column="1"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="6"
+                           Grid.RowSpan="1"
+                           Background="White"
+                           VerticalAlignment="Bottom"
+                           Height="3"/>
+
+                <TextBox Text="{
+                            Binding Path=ErrorMessage,
+                            UpdateSourceTrigger=PropertyChanged
+                         }"
+                         FontSize="14"
+                         Background="Transparent"
+                         Foreground="Red"
+                         BorderThickness="0"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="3"
+                         Grid.Row="7"
+                         IsReadOnly="True"
+                         VerticalAlignment="Center"/>
+
+                <Button x:Name="btnLogin"
+                        CommandParameter="{
+                            Binding RelativeSource=
+                                {RelativeSource AncestorType=Window}
+                        }"
+                        Command="{Binding LoginCommand}"
+                        Content="ACEPTAR"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Courier New"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="8"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="DarkGreen"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Green"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150"
+                                    Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnSalir"
+                        Command="{Binding SalirCommand}"
+                        Background="Transparent"
+                        Content="SALIR"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Courier New"
+                        Grid.Column="0"
+                        Grid.Row="10"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnLimpiar"
+                        Command="{Binding LimpiarCommand}"
+                        Background="Transparent"
+                        Content="LIMPIAR"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Courier New"
+                        Grid.Column="4"
+                        Grid.Row="10"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+    </Border>
+</Window>
